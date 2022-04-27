@@ -8,8 +8,8 @@ type KeyValueMapService interface {
 	Get(string, string) (*KeyValueMap, *Response, error)
 	Create(KeyValueMap, string) (*KeyValueMap, *Response, error)
 	Delete(string, string) (*Response, error)
-	//update is not implemented as the API is being deprectated. See KeyValueMapEntry.
-	//	Update(KeyValueMap, string) (*KeyValueMap, *Response, error)
+	//The API is being deprectated do to the migration for Hybrid/ApigeeX.See KeyValueEntry if you use Hybrid.
+	Update(KeyValueMap, string) (*KeyValueMap, *Response, error)
 }
 
 // KeyValueMapServiceOp holds creds
@@ -57,9 +57,9 @@ func (s *KeyValueMapServiceOp) Create(keyValueMap KeyValueMap, env string) (*Key
 }
 
 // Update an existing key value map
-//func (s *KeyValueMapServiceOp) Update(keyValueMap KeyValueMap, env string) (*KeyValueMap, *Response, error) {
-//	return postOrPutKeyValueMap(keyValueMap, env, "PUT", s)
-//}
+func (s *KeyValueMapServiceOp) Update(keyValueMap KeyValueMap, env string) (*KeyValueMap, *Response, error) {
+	return postOrPutKeyValueMap(keyValueMap, env, "PUT", s)
+}
 
 // Delete an existing key value map
 func (s *KeyValueMapServiceOp) Delete(name string, env string) (*Response, error) {
